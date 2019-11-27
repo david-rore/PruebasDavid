@@ -8,6 +8,7 @@ public class MyGUIForm2 extends JFrame{
     private JComboBox comboBox1;
 
     public MyGUIForm2(){
+        //Hola
 
         //add(Panel2);
         setContentPane(Panel2);
