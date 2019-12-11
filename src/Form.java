@@ -24,21 +24,30 @@ public class Form extends JFrame {
     private JPanel DecompressionTab;
     private JPanel PersTab;
     private JPanel ResultsTab;
+    private JButton compararButton;
 
     public Form() {
         JFrame jf = new JFrame();
+        JFrame jf2 = new JFrame();
+        jf2.setTitle("El Compresor2");
         //JTabbedPane tabbedPane = new JTabbedPane();
         jf.setTitle("El Compresor");
-        jf.setSize(400,250);
+        //jf.setSize(1000,250);
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         jf.setContentPane(panel1);
         jf.pack();
         jf.setVisible(true);
 
+        //deactivate tab "Resultats"
         Tabs.setEnabledAt(3, false);
         Tabs.setBackgroundAt(3, Color.gray);
         Tabs.setForegroundAt(3, Color.white);
+        //deactivate tab "Comparació"
+        Tabs.setEnabledAt(4, false);
+        Tabs.setBackgroundAt(4, Color.gray);
+        Tabs.setForegroundAt(4, Color.white);
+
 
         /* COMPRESSION
          */
@@ -53,7 +62,14 @@ public class Form extends JFrame {
                 File file = c.getSelectedFile();
                 TextCompression.setText(file.getAbsolutePath());
                 AcceptCompression.setEnabled(true);
+            }
+        });
+
+        AcceptCompression.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 enableResultsTab();
+                Tabs.setSelectedIndex(3);
             }
         });
 
@@ -71,7 +87,14 @@ public class Form extends JFrame {
                 File file = d.getSelectedFile();
                 TextDecompression.setText(file.getAbsolutePath());
                 AcceptDecompression.setEnabled(true);
+            }
+        });
+
+        AcceptDecompression.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 enableResultsTab();
+                Tabs.setSelectedIndex(3);
             }
         });
 
@@ -88,15 +111,31 @@ public class Form extends JFrame {
                 File file = p.getSelectedFile();
                 TextPers.setText(file.getAbsolutePath());
                 AcceptPers.setEnabled(true);
+            }
+        });
+
+        AcceptPers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 enableResultsTab();
+                Tabs.setSelectedIndex(3);
             }
         });
 
         ajudaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String message = "Cal escollir l'algorisme amb el que es vol aplicar la compressio/descompressió.";
+                String message = "Cal escollir si es vol duur a terme una descompressió o una compressió, indicant" +
+                        "en aquest cas quin algorisme es vol aplicar.";
                 JOptionPane.showMessageDialog(null, message);
+            }
+        });
+
+        compararButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                enableCompararTab();
+                Tabs.setSelectedIndex(4);
             }
         });
     }
@@ -105,6 +144,12 @@ public class Form extends JFrame {
         Tabs.setEnabledAt(3, true);
         Tabs.setBackgroundAt(3, Color.white);
         Tabs.setForegroundAt(3, Color.black);
+    }
+
+    private void enableCompararTab (){
+        Tabs.setEnabledAt(4, true);
+        Tabs.setBackgroundAt(4, Color.white);
+        Tabs.setForegroundAt(4, Color.black);
     }
 
 }

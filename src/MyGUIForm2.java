@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 public class MyGUIForm2 extends JFrame{
     private JPanel Panel2, Panel3;
     private JButton nextButton;
-    private JComboBox comboBox1;
 
     public MyGUIForm2(){
 
@@ -28,7 +27,7 @@ public class MyGUIForm2 extends JFrame{
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(MainSwing.compression == true)
+                if(MainSwing.compression)
                     System.out.println("es true");
                 else
                     System.out.println("es false");
